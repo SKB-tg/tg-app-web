@@ -1,7 +1,9 @@
+
+#[build]
+#  command = "echo  'python3 main.py'"
+
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build]
-  command = "python public/main.py"
