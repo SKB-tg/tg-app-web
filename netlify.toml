@@ -1,9 +1,9 @@
 
-#[build]
-#  command = "echo  'python3 main.py'"
+[build]
+  command = "echo  'python3 src/main.py'"
 
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+#[[redirects]]
+#  from = "/*"
+#  to = "/index.html"
+ # status = 200

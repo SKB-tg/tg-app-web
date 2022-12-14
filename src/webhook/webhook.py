@@ -22,8 +22,8 @@ async def webhook_data_handler(request: Request):
     bot: Bot = request.app["bot"]
 
     data = await request.post()
-    if check_webapp_signature(bot.token, data["_auth"]):
-        return json_response({"ok": True})
+    if check_webapp_signature(bot.token, data):
+        return json_response({"ok": True}, status=200)#, AnswerWebAppQuery(web_app_query_id= , extra_data="webhook.py" )
     return json_response({"ok": False, "err": "Unauthorized"}, status=401)
 
 if __name__ == "__main__":

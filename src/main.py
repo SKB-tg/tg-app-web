@@ -48,7 +48,7 @@ def main():
     ).register(app, path="/src/webhook")
     setup_application(app, dispatcher, bot=bot)
 
-    requests.get('https://api.telegram.org/bot5822305353:AAHexHNC9TLD1HZvZGcMg4C19hGnVGLyr6M/sendmessage?chat_id='+str(5146071572)+'&text=start.')
+    #requests.get('https://api.telegram.org/bot5822305353:AAHexHNC9TLD1HZvZGcMg4C19hGnVGLyr6M/sendmessage?chat_id='+str(5146071572)+'&text=start.')
 
     run_app(app, host="127.0.0.1", port=8081)
 
