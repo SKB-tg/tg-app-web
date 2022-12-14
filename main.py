@@ -5,10 +5,10 @@ import requests
 
 from aiohttp.web import run_app
 from aiohttp.web_app import Application
-from src.handlers import my_router
-from src.gethandler import demo_handler
-from src.sendMessage.sendMessage import send_message_handler
-from src.checkData.checkData import check_data_handler
+from handlers import my_router
+from gethandler import demo_handler
+from sendMessage.sendMessage import send_message_handler
+from checkData.checkData import check_data_handler
 # from handlers import my_router
 # from routes import check_data_handler, demo_handler, send_message_handler
 
