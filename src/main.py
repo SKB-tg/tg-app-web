@@ -18,7 +18,7 @@ from aiogram.types import MenuButtonWebApp, WebAppInfo
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
 TELEGRAM_TOKEN = "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"#getenv("1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU")
-APP_BASE_URL = "https://classy-pixie-efeff1.netlify.app" #getenv("URL")
+APP_BASE_URL = "https://fascinating-malasada-423411.netlify.app" #getenv("URL")
 
 
 async def on_startup(bot: Bot, base_url: str):
