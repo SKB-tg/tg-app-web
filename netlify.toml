@@ -1,6 +1,6 @@
 
 [build]
-  command = "echo  'python3 src/main.py'"
+  command = "echo  'python3 main.py'"
 
 
 #[[redirects]]
