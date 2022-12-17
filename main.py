@@ -16,7 +16,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import MenuButtonWebApp, WebAppInfo
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
-TELEGRAM_TOKEN = "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"#getenv("1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU")
+TELEGRAM_TOKEN = "5822305353:AAHexHNC9TLD1HZvZGcMg4C19hGnVGLyr6M"#getenv("1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU")
 APP_BASE_URL = "https://fascinating-malasada-423411.netlify.app" #getenv("URL")
 
 
