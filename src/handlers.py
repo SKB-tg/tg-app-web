@@ -17,13 +17,13 @@ async def command_start(message: Message, bot: Bot, base_url: str):
         chat_id=message.chat.id,
         menu_button=MenuButtonWebApp(text="Open Menu", web_app=WebAppInfo(url=f"{base_url}/src")),
     )
-    await message.answer("""Hi!\nSend me any type of message to start.\nOr just send /webview""")
+    await message.answer("""Hi!\nОтправьте мне любое сообщение, чтобы начать.\nИли просто отправ /webview""")
 
 
 @my_router.message(Command(commands=["webview"]))
 async def command_webview(message: Message, base_url: str):
     await message.answer(
-        "Good. Now you can try to send it via Webview",
+        "Отлично. Теперь вы можете попробовать отправить его через Webview",
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
                 [

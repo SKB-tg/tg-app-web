@@ -5,12 +5,11 @@ import requests
 
 from aiohttp.web import run_app
 from aiohttp.web_app import Application
-from handlers import my_router
-from gethandler import demo_handler
-from sendMessage.sendMessage import send_message_handler
-from checkData.checkData import check_data_handler
-# from handlers import my_router
-# from routes import check_data_handler, demo_handler, send_message_handler
+#from src.gethandler import demo_handler
+#from src.sendMessage.sendMessage import send_message_handler
+#from src.checkData.checkData import check_data_handler
+from src.handlers import my_router
+from src.routes import check_data_handler, demo_handler, send_message_handler
 
 
 from aiogram import Bot, Dispatcher
@@ -22,7 +21,7 @@ APP_BASE_URL = "https://fascinating-malasada-423411.netlify.app" #getenv("URL")
 
 
 async def on_startup(bot: Bot, base_url: str):
-    await bot.set_webhook(f"{base_url}/src/webhook")
+    await bot.set_webhook(f"{base_url}/src/webhook", drop_pending_updates=True)
     await bot.set_chat_menu_button(
         menu_button=MenuButtonWebApp(text="Open Menu", web_app=WebAppInfo(url=f"{base_url}/src"))
     )
