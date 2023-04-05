@@ -13,5 +13,5 @@ EXPOSE 80
 COPY . ./
 #COPY createdb.sql ./ / /
 
-ENTRYPOINT ["python", "./main.py"]
+ENTRYPOINT ["python", "main.py"]
 
