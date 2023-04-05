@@ -7,7 +7,7 @@ ENV TELEGRAM_API_TOKEN= "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 80
+EXPOSE 8080
 
 
 COPY . ./
