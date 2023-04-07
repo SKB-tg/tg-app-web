@@ -36,7 +36,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import MenuButtonWebApp, WebAppInfo
 from aiogram.webhook.aiohttp_server import setup_application #, SimpleRequestHandler
 
-TELEGRAM_TOKEN = os.getenv(TELEGRAM_API_TOKEN)
+TELEGRAM_TOKEN = "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU" #os.getenv(TELEGRAM_API_TOKEN)
 APP_BASE_URL = "https://5c23-46-56-244-132.eu.ngrok.io" #getenv("URL")
 
 
