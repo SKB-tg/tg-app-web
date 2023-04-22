@@ -341,11 +341,11 @@
     var data = serialize(form, add_obj)['str'];
     //var tg_data = serialize(form);
     //delete tg_data.str;
-    console.log(data);
+    console.log(add_obj);
 
 
     var xhr = new XMLHttpRequest();
-    var url = '/zakazDataForm';// + '?action=send_email';
+    var url = '/content/zakazDataForm/';// + '?action=send_email';
     
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -373,7 +373,7 @@
     };
 
     xhr.send(data);
-    //setTimeout(sendMessage(data), 1000);//вызов функции отсылки в чат, можно переделать забор из формы 
+	sendMessage(data);
 
   };
 
@@ -389,11 +389,15 @@
     var cart3 = cart1[key_cart[i]];
     const val_cart1 = Object.values(cart3)[6] || '';
     var category_obj={};
-    var type_obj_in_data={'product': cart1[key_cart[i]]}
+    //var type_obj_in_data={'product': cart1[key_cart[i]]}
+    var type_obj_in_data=cart1[key_cart[i]]
+
     category_obj['Категория'] = val_cart1;
-    //console.log(cart1[key_cart[i]], category_obj, type_obj_in_data);
-    //send_data_db(type_obj_in_data);
+    console.log(type_obj_in_data, cart1[key_cart[i]], category_obj );
+    // send_data_db(type_obj_in_data, category_obj);
   }
+   
+
         //----------------------------------------
         // "name"  TEXT,
         // "description" TEXT,
@@ -403,7 +407,7 @@
         // "attribute" TEXT,
         // "src"
     formSend(form, category_obj);
-
+    //setTimeout(sendMessage(data), 1000);//вызов функции отсылки в чат, можно переделать забор из формы 
     });
   }
 })();
@@ -438,10 +442,13 @@ function chek_order(resp) {
 
     cartDOMElement.appendChild(chek__orderDOMElement);
   // };
-
 }
 //   end popup__chek__order*/
+function closess() {
+  document.querySelector('.popup.is-active').classList.remove('is-active');
+  myLib.toggleScroll();
 
+}
 /* cart start */
 ;(function() {
   const cartDOMElement = document.querySelector('.js-cart');
@@ -678,41 +685,68 @@ function chek_order(resp) {
 //  end cart
 
 // TG-web-app  start
-function sendMessage(msg_id, with_webview) {
+function sendMessage(msg, with_webview=1) {
     if (!initDataUnsafe.query_id) {
         alert('WebViewQueryId not defined');
         return;
     }
     //if (!msg_id == '') {let msg_id_m = JSON.stringify(msg_id, null, 2);}
-	let msg_id_m = JSON.stringify(msg_id);
-    $.ajax('/sendMessage', {
-        type: 'POST',
-        data: {
-            _auth: initData,
-            msg_id: msg_id_m || '',
-            with_webview: !initDataUnsafe.receiver && with_webview ? 1 : 0
-        },
-        dataType: 'json',
-        success: setTimeout(function (result) {
-            //$('button').prop('disabled', false);
-            if (result.response) {
-                if (result.response.ok) {
-                    $('#btn_status').html('Message sent successfully!').addClass('ok').show();
+	   //let msg_id_m = JSON.stringify(msg);
+//---------------------------------------------------------------------
+        fetch("/content/sendMessage/", {
+            "method": "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            },
+            "body": JSON.stringify({
+            "data": {_auth: initData,
+            "msg": msg || '',
+            "with_webview": !initDataUnsafe.receiver && with_webview ? 1 : 0}
+            })
+             })
+            .then(res => (res.json()))
+            .then(res => {if (res.ok) {
+                    alert('Hash is correct');
+
                 } else {
-                    $('#btn_status').text(result.response.description).addClass('err').show();
-                    alert(result.response.description);
+                    alert('Unknown error');
                 }
-            } else {
-                $('#btn_status').text('Unknown error').addClass('err').show();
-                alert('Unknown error');
-            }
-        }, 1000),
-        error: function (xhr) {
-            //$('button').prop('disabled', false);
-            $('#btn_status').text('Server error').addClass('err').show();
-            alert('Server error');
-        }
-    });
+                return res;
+            })
+            .then(data => {
+                //alert('Server error');
+                console.log(data);
+            })
+//--------------------------------------------------------------------
+    // $.ajax('/sendMessage', {
+    //     type: 'POST',
+    //     data: {
+    //         _auth: initData,
+    //         msg_id: msg_id_m || '',
+    //         with_webview: !initDataUnsafe.receiver && with_webview ? 1 : 0
+    //     },
+    //     dataType: 'json',
+    //     success: setTimeout(function (result) {
+    //         //$('button').prop('disabled', false);
+    //         if (result.response) {
+    //             if (result.response.ok) {
+    //                 $('#btn_status').html('Message sent successfully!').addClass('ok').show();
+    //             } else {
+    //                 $('#btn_status').text(result.response.description).addClass('err').show();
+    //                 alert(result.response.description);
+    //             }
+    //         } else {
+    //             $('#btn_status').text('Unknown error').addClass('err').show();
+    //             alert('Unknown error');
+    //         }
+    //     }, 1000),
+    //     error: function (xhr) {
+    //         //$('button').prop('disabled', false);
+    //         $('#btn_status').text('Server error').addClass('err').show();
+    //         alert('Server error');
+    //     }
+    // });
+//----------------------------------------------------------------------------------
 }
 Telegram.WebApp.ready();
 
@@ -723,72 +757,67 @@ function webviewExpand() {
     Telegram.WebApp.expand();
 }
 
-;(function(){
+//;(function(){
 
    let initDataUnsafe_JSON = JSON.stringify(initDataUnsafe, null, 2);
     if (initDataUnsafe.query_id && initData) {
         $('#webview_data_status').show();
-        $.ajax('/checkData', {
-            type: 'POST',
-            data: {_auth: initData},
-            id: initData.id,
-            dataType: 'json',
-            success: function (result) {
-                if (result.ok) {
-                    $('#webview_data_status').html('Hash is correct').addClass('ok');
+//------------------------------------------------------------------
+        fetch("/content/checkData/", {
+            "method": "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            },
+            "body": JSON.stringify({
+            "data": {_auth: initData},
+            "id": initData.id,})
+             })
+            .then(res => (res.json()))
+            .then(res => {if (res.ok) {
                     alert('Hash is correct');
 
                 } else {
                     alert('Unknown error');
                 }
-            },
-            error: function (xhr) {
-                    alert('No correct');
-                }
-        });
+                return res;
+            })
+            .then(data => {
+                    //alert('Server error');
+                console.log(data);
+            })
     }
-})();
+//})();
 
-function send_data_db(obj) {
-    // let formData = new FormData(Data);
-    // formData.append('id', 1.466566666646464 match.random());
-    // var obj = {};
+function send_data_db(obj, obj1) {
+     // var obj = {};
     // formData.forEach( ( value,key) => {
     //   obj[key] = value;
     // });
     _json = JSON.stringify(obj);
-    console.log(_json);
-    // const request = new XMLHttpRequest();
-    // request.open('POST', '/sendDataDB');
-    // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // request.responseType = 'json';
-    // request.send(json);
-    // request.addEventListener('load', (event) => {
-    //     if (request.status != 200) {
-    //         console.log('Проблема');
-    //     }
-    //     alert('Hash is correct');
 
-    //    // console.log(request.response);
-    // });
+    console.log(_json, initData, obj );
+ 
 //-----------------------------------------------------------
-        $.ajax('/sendDataDB', {
-            type: 'POST',
-            data: {_auth: initData,
-              my_data: _json},
-            id: initData.id,
-            dataType: 'json',
-            success: function (result) {
-                if (result.ok) {
+        fetch("/content/sendDataDB/", {
+            "method": "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            },
+            "body": JSON.stringify(obj)//{ 
+            //"data": obj}//{"a_uth": obj}}),
+              //"item_data": obj, "id_m": 4})
+             })
+            .then(res => (res.json()))
+            .then(res => {if (res.ok) {
                     alert('Hash is correct');
 
                 } else {
                     alert('Unknown error');
                 }
-            },
-            error: function (xhr) {
-                    alert('No correct');
-                }
-        });
+                return res;
+            })
+            .then(data => {
+                console.log(data);
+            })
 
 }

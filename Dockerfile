@@ -1,16 +1,27 @@
-FROM python:3.10-slim-buster
+FROM python:3.10
 
-WORKDIR /app
+WORKDIR /usr/src/
 
-ENV TELEGRAM_API_TOKEN = "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"
+##ENV TELEGRAM_API_TOKEN = "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"
+##ENV PYTHONDONTWRITEBYTECODE 1
+##ENV PYTHONUNBUFFERED 1
+RUN python -m venv /usr/src/venvap
 
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r /APP/requirements.txt
+ENV PATH="/usr/src/venvap/bin:$PATH"
 
-COPY tg-app-web /app
+COPY requirements.txt /usr/src/
+
+#RUN bash venvap/bin/activate 
+RUN pip install --no-cache-dir -r /usr/src/requirements.txt
+
+COPY .env ./
+COPY *.py ./
+COPY app ./app
+COPY public ./public
+
+
 #COPY createdb.sql ./ / /
 
-EXPOSE 8000
+EXPOSE 5000
 
 ENTRYPOINT ["python", "main.py"]
-

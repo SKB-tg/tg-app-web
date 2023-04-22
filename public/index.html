@@ -20,8 +20,8 @@
   <meta name="theme-color" content="#ffffff">
 
   <title>PizzaTime — пицца в Минске от итальянского повара</title>
-  <link rel="stylesheet" id="google-fonts-css" href="{{css_stat}}s.css" type="text/css" media="all">
-  <link rel="stylesheet" id="main-style-css" href="{{css_stat}}style.css" type="text/css" media="all">
+  <link rel="stylesheet" id="google-fonts-css" href="/static/css/s.css" type="text/css" media="all">
+  <link rel="stylesheet" id="main-style-css" href="/static/css/style.css" type="text/css" media="all">
   <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
 
 </head>
@@ -34,7 +34,7 @@
   <div class="container header-page__container">
     <div class="header-page__start">
       <div class="logo">
-                  <img class="logo__img" src="{{src_stat}}logo.svg" alt="" width="127" height="21">
+                  <img class="logo__img" src="/static/src/logo.svg" alt="" width="127" height="21">
               </div>
     </div>
     <div class="header-page__end">
@@ -60,7 +60,7 @@
 <!-- /.header-page -->
 
 <!-- section-top -->
-<section class="section-top lazy" data-src="http://localhost{{img_stat}}bg.jpg.webp" data-src-replace-webp="http://localhost{{img_stat}}bg.jpg" data-was-processed="true" style="background-image: url(&quot;http://localhost{{img_stat}}bg.jpg.webp&quot;);">
+<section class="section-top lazy" data-src="/static/img/bg.jpg.webp" data-src-replace-webp="/static/img/bg.jpg" data-was-processed="true" style="background-image: url(&quot;/static/img/bg.jpg.webp&quot;);">
   <div class="container section-top__container">
     <p class="section-top__info">от итальянского повара</p>
     <h1 class="section-top__title">Лучшая пицца в Минске</h1>
@@ -109,12 +109,15 @@
               
 <div class="catalog__item" data-category="burgery">
   <div class="product catalog__product js-product" data-product-name="Острый" data-product-price="350" data-product-src="{{img_stat}}burger2-500x313.png">
-    <a class="product__img-link" href="http://localhost/pizzatime/products/ostryj/">
+    <div class="product__img_box">
+          <a class="product__img-link" href="http://localhost/pizzatime/products/ostryj/">
       <picture>
-        <source type="image/webp" srcset="{{img_stat}}burger2-500x313.png.webp" data-srcset="{{img_stat}}burger2-500x313.png.webp">
-        <img class="product__img lazy loaded" src="{{img_stat}}burger2-500x313.png" data-src="{{img_stat}}burger2-500x313.png" alt="" data-was-processed="true">
+        <source type="image/webp" srcset="/static/img/burger2-500x313.png.webp" data-srcset="/static/img/burger2-500x313.png.webp">
+        <img class="product__img lazy loaded" src="/static/img/burger2-500x313.png" data-src="/static/img/burger2-500x313.png" alt="" data-was-processed="true">
       </picture>
     </a>
+
+    </div>
     <div class="product__content">
       <a class="product__link" href="http://localhost/pizzatime/products/ostryj/">
         <h3 class="product__title">Острый</h3>
@@ -124,8 +127,11 @@
       </div>
     </div>
     <footer class="product__footer">
-      
-      <div class="product__bottom">
+              <div class="product__sizes">
+<!--                                           <button data-product-attribute-price="220" data-product-attribute-value="Средний" class="js-btn-product-attribute product__size is-active" type="button">Midle</button>
+                                <button data-product-attribute-price="350" data-product-attribute-value="Большой" class="js-btn-product-attribute product__size" type="button">Big</button>
+ -->                  </div>
+            <div class="product__bottom">
         <div class="product__price">
           <span class="product__price-value js-product-price-value">350</span>
           <span class="product__currency">₽</span>
@@ -137,12 +143,14 @@
 </div>              
 <div class="catalog__item" data-category="burgery">
   <div class="product catalog__product js-product" data-product-name="Бургер" data-product-price="220" data-product-attribute="Средний" data-product-src="{{img_stat}}burger1-500x313.png">
+    <div class="product__img_box">
     <a class="product__img-link" href="http://localhost/pizzatime/products/burger/">
       <picture>
-        <source type="image/webp" srcset="{{img_stat}}burger1-500x313.png.webp" data-srcset="{{img_stat}}burger1-500x313.png.webp">
-        <img class="product__img lazy loaded" src="{{img_stat}}burger1-500x313.png" data-src="{{img_stat}}burger1-500x313.png" alt="" data-was-processed="true">
+        <source type="image/webp" srcset="/static/img/burger1-500x313.png.webp" data-srcset="/static/img/burger1-500x313.png.webp">
+        <img class="product__img lazy loaded" src="/static/img/burger1-500x313.png" data-src="/static/img/burger1-500x313.png" alt="" data-was-processed="true">
       </picture>
     </a>
+    </div>
     <div class="product__content">
       <a class="product__link" href="http://localhost/pizzatime/products/burger/">
         <h3 class="product__title">Бургер</h3>
@@ -169,15 +177,18 @@
 </div>              
 <div class="catalog__item" data-category="napitki">
   <div class="product catalog__product js-product" data-product-name="Сок" data-product-price="50" data-product-attribute="Маленький" data-product-src="http://localhost/pizzatime/wp-content/uploads/2020/04/bottle-500x313.png">
+    <div class="product__img_box">
     <a class="product__img-link" href="http://localhost/pizzatime/products/sok/">
       <picture>
-        <source type="image/webp" srcset="{{img_stat}}bottle-500x313.png.webp" data-srcset="{{img_stat}}bottle-500x313.png.webp">
-        <img class="product__img lazy loaded" src="{{img_stat}}bottle-500x313.png" data-src="{{img_stat}}bottle-500x313.png" alt="" data-was-processed="true">
+        <source type="image/webp" srcset="/static/img/bottle-500x313.png.webp" data-srcset="/static/img/bottle-500x313.png.webp">
+        <img class="product__img lazy loaded" src="/static/img/bottle-500x313.png" data-src="/static/img/bottle-500x313.png" alt="" data-was-processed="true">
       </picture>
     </a>
+
+    </div>
     <div class="product__content">
-<!--       <a class="product__link" href="http://localhost/pizzatime/products/sok/">
- -->        <h3 class="product__title">Сок</h3>
+      <a class="product__link" href="http://localhost/pizzatime/products/sok/">
+        <h3 class="product__title">Сок</h3>
       </a>
       <div class="product__description">
         <p>Апельсиновый сок</p>
@@ -201,12 +212,14 @@
 </div>              
 <div class="catalog__item" data-category="gribnye,mjasnye">
   <div class="product catalog__product js-product" data-product-name="Л-01" data-product-price="950" data-product-attribute="25 см" data-product-src="{{img_stat}}9.png">
+    <div class="product__img_box">
     <a class="product__img-link" href="http://localhost/pizzatime/products/l-01/">
       <picture>
-        <source type="image/webp" srcset="{{img_stat}}9.png.webp" data-srcset="{{img_stat}}9.png.webp">
-        <img class="product__img lazy loaded" src="{{img_stat}}9.png" data-src="{{img_stat}}9.png" alt="" data-was-processed="true">
+        <source type="image/webp" srcset="/static/img/9.png.webp" data-srcset="/static/img/9.png.webp">
+        <img class="product__img lazy loaded" src="/static/img/9.png" data-src="/static/img/9.png" alt="" data-was-processed="true">
       </picture>
     </a>
+    </div>
     <div class="product__content">
       <a class="product__link" href="http://localhost/pizzatime/products/l-01/">
         <h3 class="product__title">Л-01</h3>
@@ -233,13 +246,15 @@
   </div>
 </div>              
 <div class="catalog__item" data-category="mjasnye">
-  <div class="product catalog__product js-product" data-product-name="Мясная" data-product-price="950" data-product-attribute="25 см" data-product-src="{{img_stat}}2.png">
+  <div class="product catalog__product js-product" data-product-name="Мясная" data-product-price="950" data-product-attribute="25 см" data-product-src="/static/img/2.png">
+    <div class="product__img_box">
     <a class="product__img-link" href="http://localhost/pizzatime/products/mjasnaja/">
       <picture>
-        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="{{img_stat}}2.png.webp">
-        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{img_stat}}2.png" alt="">
+        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="/static/img/2.png.webp">
+        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="/static/img/2.png" alt="">
       </picture>
     </a>
+    </div>
     <div class="product__content">
       <a class="product__link" href="http://localhost/pizzatime/products/mjasnaja/">
         <h3 class="product__title">Мясная</h3>
@@ -266,13 +281,16 @@
   </div>
 </div>              
 <div class="catalog__item" data-category="mjasnye">
-  <div class="product catalog__product js-product" data-product-name="Три сыра" data-product-price="990" data-product-attribute="25 см" data-product-src="{{img_stat}}8.png">
+  <div class="product catalog__product js-product" data-product-name="Три сыра" data-product-price="990" data-product-attribute="25 см" data-product-src="/static/img/8.png">
+    <div class="product__img_box">
     <a class="product__img-link" href="http://localhost/pizzatime/products/tri-syra/">
       <picture>
-        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="{{img_stat}}8.png.webp">
-        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{img_stat}}8.png" alt="">
+        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="/static/img/8.png.webp">
+        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="/static/img/8.png" alt="">
       </picture>
     </a>
+
+    </div>
     <div class="product__content">
       <a class="product__link" href="http://localhost/pizzatime/products/tri-syra/">
         <h3 class="product__title">Три сыра</h3>
@@ -299,16 +317,18 @@
   </div>
 </div>              
 <div class="catalog__item" data-category="mjasnye">
-  <div class="product catalog__product js-product" data-product-name="Фирменная" data-product-price="890 " data-product-attribute="25 см" data-product-src="{{img_stat}}5.png">
+  <div class="product catalog__product js-product" data-product-name="Фирменная" data-product-price="890 " data-product-attribute="25 см" data-product-src="/static/img/5.png">
+    <div class="product__img_box">
     <a class="product__img-link" href="http://localhost/pizzatime/products/firmennaja/">
       <picture>
-        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="{{img_stat}}5.png.webp">
-        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{img_stat}}5.png" alt="">
+        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="/static/img/5.png.webp">
+        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="/static/img/5.png" alt="">
       </picture>
     </a>
+    </div>
     <div class="product__content">
       <a class="product__link" href="http://localhost/pizzatime/products/firmennaja/">
-        <h3 class="product__title">Фирменная</h3>
+        <h3 class="product__title" >Фирменная</h3>
       </a>
       <div class="product__description">
         <p>Томатно-сливочный соус, бекон, моцарелла</p>
@@ -332,13 +352,15 @@
   </div>
 </div>              
 <div class="catalog__item" data-category="mjasnye">
-  <div class="product catalog__product js-product" data-product-name="Хит" data-product-price="1050" data-product-attribute="25 см" data-product-src="{{img_stat}}3.png">
+  <div class="product catalog__product js-product" data-product-name="Хит" data-product-price="1050" data-product-attribute="25 см" data-product-src="/static/img/3.png">
+    <div class="product__img_box">
     <a class="product__img-link" href="http://localhost/pizzatime/products/hit/">
       <picture>
-        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="{{img_stat}}3.png.webp">
-        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{img_stat}}3.png" alt="">
+        <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="/static/img/3.png.webp">
+        <img class="product__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="/static/img/3.png" alt="">
       </picture>
     </a>
+    </div>
     <div class="product__content">
       <a class="product__link" href="http://localhost/pizzatime/products/hit/">
         <h3 class="product__title">Хит</h3>
@@ -374,10 +396,10 @@
 <!-- /.section-catalog -->
 
 <!-- section-about -->
-<section class="section section-about">
+<section class="section section-about" id="section-about">
   <picture>
-    <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="{{img_stat}}bg.webp">
-    <img class="section-about__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{img_stat}}bg.jpg" alt="">
+    <source type="image/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-srcset="/static/img/bg.webp">
+    <img class="section-about__img lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="/static/img/bg.jpg" alt="">
   </picture>
   <div class="container section-about__container">
     <div class="section-about__content">
@@ -390,7 +412,7 @@
 <!-- /.section-about -->
 
 <!-- section-contacts -->
-<section class="section section-contacts">
+<section class="section section-contacts" id="section-contacts">
   <div class="container section-contacts__container">
         <header class="section__header">
       <h2 class="page-title sectoin-contacts__title">Контакты</h2>
@@ -474,9 +496,9 @@
         <button class="btn-close popup__btn-close popup-close"></button>
         <nav class="mobile-menu popup__mobile-menu">
           <ul id="menu-menju-v-shapke-1" class="mobile-menu__ul popup-close"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-29"><a href="" aria-current="page">Главная</a></li>
-<li class="menu-item menu-item-type-post_type_archive menu-item-object-product menu-item-105"><a href="">Товары</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-104"><a href="">О нас</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103"><a href="">Контакты</a></li>
+<li class="menu-item menu-item-type-post_type_archive menu-item-object-product menu-item-105"><a href="#section-catalog">Товары</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-104"><a href="#section-about">О нас</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103"><a href="#section-contacts">Контакты</a></li>
 </ul>        </nav>
         <div class="phone popup__phone">
           <a class="phone__item phone__item--accent" href="tel:+78888888888">+375 (44) 877-88-88</a>
@@ -570,6 +592,8 @@
         <h2 class="page-title popup__title">Успешно отправлено</h2>
         <p class="popup__subtitle">Мы уже начали готовить ваш заказ</p>
         <div class="popup__chek__order"></div>
+        <div class="btn_box" style="width: 100%;display: flex;flex-wrap: nowrap;justify-content: center;" onclick="closess();"><button class="btn product__btn " type="button">Сохранить</button></div>
+
       </div>
     </div>
   </div>
@@ -607,7 +631,7 @@
 /*var WPJS = {"siteUrl":"http:\/\/localhost\/pizzatime\/wp-content\/themes\/pizzatime","ajaxUrl":"http:\/\/localhost\/pizzatime\/wp-admin\/admin-ajax.php"};*/
 /* ]]> */
 </script>
-<script type="text/javascript" src="{{js_stat}}main.js"></script>
-  <script src="{{js_stat}}jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/static/js/main.js"></script>
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
 
 </body></html>
