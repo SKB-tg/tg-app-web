@@ -1,5 +1,0 @@
-common:
-  port: 5000 # порт, на котором будет запускаться наше приложение
-# postgres:
-#   database_url: postgres://forum_user:forum_password@localhost/forum
-#   require_ssl: false # стоит ли шифровать соединение с базой

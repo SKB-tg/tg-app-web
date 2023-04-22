@@ -1,18 +1,18 @@
 FROM python:3.10
 
-WORKDIR /usr/src/
+WORKDIR /src/
 
 ##ENV TELEGRAM_API_TOKEN = "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"
 ##ENV PYTHONDONTWRITEBYTECODE 1
 ##ENV PYTHONUNBUFFERED 1
-RUN python -m venv /usr/src/venvap
+RUN python -m venv /src/venvap
 
-ENV PATH="/usr/src/venvap/bin:$PATH"
+ENV PATH="/src/venvap/bin:$PATH"
 
-COPY requirements.txt /usr/src/
+COPY requirements.txt /src/
 
 #RUN bash venvap/bin/activate 
-RUN pip install --no-cache-dir -r /usr/src/requirements.txt
+RUN pip install --no-cache-dir -r /src/requirements.txt
 
 COPY .env ./
 COPY *.py ./
