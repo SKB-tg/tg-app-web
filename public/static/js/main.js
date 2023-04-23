@@ -237,14 +237,73 @@
   });
 })();
 /* catalog end */
+//------------------------------------------------------------------------------------------
+/* map start */
+// ;(function() {
+//   var sectionContacts = document.querySelector('.section-contacts');
 
+//   if (!sectionContacts) {
+//     return;
+//   }
+
+//   var ymapInit = function() {
+//     if (typeof ymaps === 'undefined') {
+//       return;
+//     }
+  
+//     ymaps.ready(function () {
+//       var ymap = document.querySelector('.contacts__map');
+//       var coordinates = ymap.getAttribute('data-coordinates');
+//       var address = ymap.getAttribute('data-address');
+
+//       var myMap = new ymaps.Map('ymap', {
+//               center: coordinates.split(','),
+//               zoom: 16
+//           }, {
+//               searchControlProvider: 'yandex#search'
+//           }),
+  
+//           myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+//               balloonContent: address
+//           }, {
+//               iconLayout: 'default#image',
+//               iconImageHref: WPJS.siteUrl + '/assets/img/common/marker.svg',
+//               iconImageSize: [40, 63.2],
+//               iconImageOffset: [-50, -38]
+//           });
+  
+//       myMap.geoObjects.add(myPlacemark);
+  
+//       myMap.behaviors.disable('scrollZoom');
+//     });
+//   };
+
+//   var ymapLoad = function() {
+//     var script = document.createElement('script');
+//     script.src = 'https://api-maps.yandex.ru/2.1/?lang=en_RU';
+//     myLib.body.appendChild(script);
+//     script.addEventListener('load', ymapInit);
+//   };
+
+//   var checkYmapInit = function() {
+//     var sectionContactsTop = sectionContacts.getBoundingClientRect().top;
+//     var scrollTop = window.pageYOffset;
+//     var sectionContactsOffsetTop = scrollTop + sectionContactsTop;
+
+//     if (scrollTop + window.innerHeight > sectionContactsOffsetTop) {
+//       ymapLoad();
+//       window.removeEventListener('scroll', checkYmapInit);
+//     }
+//   };
+
+//   window.addEventListener('scroll', checkYmapInit);
+//   checkYmapInit();
+// })();
+/* map end */
+//-------------------------------------------------------------------
 /* map start */
 ;(function() {
   var sectionContacts = document.querySelector('.section-contacts');
-
-  if (!sectionContacts) {
-    return;
-  }
 
   var ymapInit = function() {
     if (typeof ymaps === 'undefined') {
@@ -252,23 +311,19 @@
     }
   
     ymaps.ready(function () {
-      var ymap = document.querySelector('.contacts__map');
-      var coordinates = ymap.getAttribute('data-coordinates');
-      var address = ymap.getAttribute('data-address');
-
       var myMap = new ymaps.Map('ymap', {
-              center: coordinates.split(','),
+              center: [53.917559, 27.585313],
               zoom: 16
           }, {
               searchControlProvider: 'yandex#search'
           }),
   
           myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-              balloonContent: address
+              balloonContent: 'г. Минск, площадь Якуба Коласа, 2'
           }, {
               iconLayout: 'default#image',
-              iconImageHref: WPJS.siteUrl + '/assets/img/common/marker.svg',
-              iconImageSize: [40, 63.2],
+              iconImageHref: 'img/common/marker.png',
+              iconImageSize: [40, 50.2],
               iconImageOffset: [-50, -38]
           });
   
@@ -300,7 +355,6 @@
   checkYmapInit();
 })();
 /* map end */
-
 /* form start */
 ;(function() {
   var forms = document.querySelectorAll('.form-send');
