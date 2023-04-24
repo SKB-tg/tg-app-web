@@ -128,7 +128,7 @@ samp {
 /**
  * Add the correct font size in all browsers.
  */
-h3, h2, .product__price {
+h4, h3, h2, .product__price {
 /*    -webkit-text-stroke-color: white;
     -webkit-text-stroke-width: 0.2px;*/
       text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
@@ -869,7 +869,8 @@ a img.aligncenter {
   .product__sizes {
     margin-bottom: 15px;
   }
-  h3 {
+
+  h3, h4 {
 
     white-space: pre;
   }
@@ -897,6 +898,28 @@ a img.aligncenter {
   width: 500px;
   height: auto;
 }
+h3 {
+  margin: 0 0 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+}
+@media (max-width: 370px) {
+
+h4 {
+  margin: 0 0 8px;
+  font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+  }
+.product__title h3{
+  margin: 0 0 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  }
+  }
+@media (min-width: 370px) {
 
 .product__title {
   margin: 0 0 10px;
@@ -904,7 +927,7 @@ a img.aligncenter {
   font-weight: 900;
   font-size: 22px;
 }
-
+}
 .product__description {
   margin: 0;
   color: #9f9f9f;

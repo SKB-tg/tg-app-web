@@ -779,7 +779,7 @@ function sendMessage(msg, with_webview=1) {
              })
             .then(res => (res.json()))
             .then(res => {if (res.ok) {
-                    alert('Hash is correct');
+                    //alert('Hash is correct');
 
                 } else {
                     alert('Unknown error');
@@ -882,7 +882,7 @@ function send_data_db(obj, obj1) {
              })
             .then(res => (res.json()))
             .then(res => {if (res.ok) {
-                    alert('Hash is correct');
+                   // alert('Hash is correct');
 
                 } else {
                     alert('Unknown error');
