@@ -394,6 +394,7 @@ img {
 
 .no-scroll {
   overflow: hidden;
+  transition: transform .5s, overflow .5s;
 }
 
 .js-focus-visible :focus:not(.focus-visible) {
@@ -1076,7 +1077,7 @@ a img.aligncenter {
   width: 50px;
   height: 50px;
   display: inline-block;
-  transition: transform 0.2s, opacity 0.2s;
+/*  transition: transform 1s, opacity 1s;*/
 }
 
 .btn-close:hover {
@@ -1704,12 +1705,15 @@ a img.aligncenter {
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
+
 }
 
 .popup.is-active {
   pointer-events: auto;
   opacity: 1;
   visibility: visible;
+  transition: transform .8s, opacity .8s;
+
 }
 
 .popup__wrapper {

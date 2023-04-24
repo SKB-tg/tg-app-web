@@ -95,10 +95,24 @@
 ;(function() {
   var showPopup = function(target) {
     target.classList.add('is-active');
+    console.log("showPopup");
   };
 
   var closePopup = function(target) {
-    target.classList.remove('is-active');
+    // g=target.classList;
+    // d='.'+g[0]+'.'+g[1]+'.'+g[2];
+    // console.log(d);
+    // $(d).fadeOut(1000, function (g) {g.remove('is-active');});
+    // var op=target.getAttribute("style") //style.opacity;
+    // setInterval(op = op - 0.1, 100);
+    //target.classList.remove('is-active');
+    var opacity = 1; 
+     var interval = setInterval(function() { opacity -= 0.05; 
+      target.style.opacity=opacity;
+        if (opacity < 0) { clearInterval(interval); myLib.toggleScroll(); target.classList.remove('is-active');
+         target.removeAttribute("style"); return; } }, 50); 
+     
+
   };
 
   myLib.body.addEventListener('click', function(e) {
@@ -130,7 +144,7 @@
           if (popup_thanks) { delete_popup__chek__order('chek__order_id');
            }
           closePopup(popup);
-          myLib.toggleScroll();
+          //myLib.toggleScroll();
 
     }
   });
@@ -144,7 +158,7 @@
 
     if (popup) {
       closePopup(popup);
-      myLib.toggleScroll();
+     // myLib.toggleScroll();
     }
   });
 })();
@@ -409,7 +423,7 @@
 
       if (activePopup) {
         activePopup.classList.remove('is-active');
-      } else {
+       } else {
         myLib.toggleScroll();
       }
 
@@ -498,10 +512,13 @@ function chek_order(resp) {
   // };
 }
 //   end popup__chek__order*/
-function closess() {
-  document.querySelector('.popup.is-active').classList.remove('is-active');
-  myLib.toggleScroll();
-
+function closess(popupclass) {
+  target=document.querySelector('.popup.'+popupclass);
+    var opacity = 1; 
+     var interval = setInterval(function() { opacity -= 0.05; 
+      target.style.opacity=opacity;
+        if (opacity < 0) { clearInterval(interval); myLib.toggleScroll(); target.classList.remove('is-active');
+         target.removeAttribute("style"); return; } }, 50);
 }
 /* cart start */
 ;(function() {
