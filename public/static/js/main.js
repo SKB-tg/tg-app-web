@@ -109,7 +109,8 @@
     var opacity = 1; 
      var interval = setInterval(function() { opacity -= 0.05; 
       target.style.opacity=opacity;
-        if (opacity < 0) { clearInterval(interval); myLib.toggleScroll(); target.classList.remove('is-active');
+        if (opacity < 0) { clearInterval(interval); 
+          if (document.querySelector('body').classList.contains('no-scroll')) { myLib.toggleScroll();} target.classList.remove('is-active');
          target.removeAttribute("style"); return; } }, 50); 
      
 
@@ -514,10 +515,11 @@ function chek_order(resp) {
 //   end popup__chek__order*/
 function closess(popupclass) {
   target=document.querySelector('.popup.'+popupclass);
-    var opacity = 1; 
-     var interval = setInterval(function() { opacity -= 0.05; 
+  var opacity = 1; 
+  var interval = setInterval(function() { opacity -= 0.05; 
       target.style.opacity=opacity;
-        if (opacity < 0) { clearInterval(interval); myLib.toggleScroll(); target.classList.remove('is-active');
+  if (opacity < 0) { clearInterval(interval);
+  if (document.querySelector('body').classList.contains('no-scroll')) { myLib.toggleScroll();} target.classList.remove('is-active');
          target.removeAttribute("style"); return; } }, 50);
 }
 /* cart start */
