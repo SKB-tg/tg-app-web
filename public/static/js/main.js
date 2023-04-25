@@ -833,7 +833,7 @@ function webviewExpand() {
 //;(function(){
 
 let initDataUnsafe_JSON = JSON.stringify(initDataUnsafe, null, 2);
-if (!initDataUnsafe.query_id && !initData) {
+if (initDataUnsafe.query_id && initData) {
     $('#webview_data_status').show();
 //------------------------------------------------------------------
     fetch("/content/checkData/", {
