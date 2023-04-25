@@ -110,10 +110,13 @@ async def send_data_json_for_db_handler(request1: Dict, db: Session = Depends(ge
 @router.post("/checkData/")
 async def check_data_handler(request: Dict):
     data = request["data"]
-    # Bot.set_current(bot)
-    #data={"data":{"_auth":"query_id=AAFGAjQZAAAAAEYCNBlDdEo-&user=%7B%22id%22%3A422838854%2C%22first_name%22%3A%22%D0%9A%D0%B8%D1%80%D0%B8%D0%BB%D0%BB%22%2C%22last_name%22%3A%22sl%22%2C%22username%22%3A%22KirSl19%22%2C%22language_code%22%3A%22ru%22%7D&auth_date=1681729483&hash=9ba9571a67d66db9038f4ebca1c7d6ed6a079a5ba0c2ee8219c3240d9794fe82"}}
-    #data = await request.body()
-    print(data)
+    try:
+        web_app_init_data = safe_parse_webapp_init_data(token=bot.token, init_data=data["_auth"])
+    except ValueError:
+        return {"ok": False, "err": "Error data"}
+    print(web_app_init_data)
+
+    
     if check_webapp_signature(bot.token, data["_auth"]):
         return {"ok": True}
     return {"ok": False, "err": "Unauthorized"}
@@ -188,4 +191,5 @@ async def check_data_handler(request: Request):
     if check_webapp_signature(bot.token, data["_auth"]):
         return json_response({"ok": True})
 
-    return json_response({"ok": False, "err": "Unauthorized"}, status=401)
+    return json_response({"ok": False, "err": "Unauthorized"}, status=401)
+

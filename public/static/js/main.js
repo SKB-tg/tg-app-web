@@ -832,33 +832,33 @@ function webviewExpand() {
 
 //;(function(){
 
-   let initDataUnsafe_JSON = JSON.stringify(initDataUnsafe, null, 2);
-    if (initDataUnsafe.query_id && initData) {
-        $('#webview_data_status').show();
+let initDataUnsafe_JSON = JSON.stringify(initDataUnsafe, null, 2);
+if (!initDataUnsafe.query_id && !initData) {
+    $('#webview_data_status').show();
 //------------------------------------------------------------------
-        fetch("/content/checkData/", {
-            "method": "POST",
-            headers: {
-                "Content-Type": "application/json;charset=utf-8"
-            },
-            "body": JSON.stringify({
-            "data": {_auth: initData},
-            "id": initData.id,})
-             })
-            .then(res => (res.json()))
-            .then(res => {if (res.ok) {
-                    alert('Hash is correct');
+    fetch("/content/checkData/", {
+        "method": "POST",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        },
+        "body": JSON.stringify({
+        "data": {_auth: initData},
+        "id": initData.id,})
+         })
+        .then(res => (res.json()))
+        .then(res => {if (res.ok) {
+                alert('Hash is correct');
 
-                } else {
-                    alert('Unknown error');
-                }
-                return res;
-            })
-            .then(data => {
-                    //alert('Server error');
-                console.log(data);
-            })
-    }
+            } else {
+                alert('Unknown error');
+            }
+            return res;
+        })
+        .then(data => {
+                //alert('Server error');
+            console.log(data);
+        })
+}
 //})();
 
 function send_data_db(obj, obj1) {
