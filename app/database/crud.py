@@ -4,11 +4,11 @@ from app.database import models, schemas
 
 
 def get_TgUser(db: Session, user_id: int):
-    return db.query(models.TgUser).filter(models.User.id == user_id).first()
+    return db.query(models.TgUser).filter(models.TgUser.id == user_id).first()
 
 
 def get_TgUser_by_email(db: Session, first_name: str):
-    return db.query(models.TgUser).filter(models.User.first_name == first_name).first()
+    return db.query(models.TgUser).filter(models.TgUser.first_name == first_name).first()
 
 
 def get_TgUsers(db: Session, skip: int = 0, limit: int = 100):
@@ -17,7 +17,7 @@ def get_TgUsers(db: Session, skip: int = 0, limit: int = 100):
 
 def create_TgUser(db: Session, user: schemas.TgUserCreate):
     fake_hashed_password = user.password + "notreallyhashed"
-    db_user = models.User(first_name=user.first_name, hashed_password=fake_hashed_password)
+    db_user = models.TgUser(**user.dict(), hashed_password=fake_hashed_password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -46,4 +46,4 @@ def create_product_photo(db: Session, product_photo: schemas.ProductPhotoCreate,
     db.add(db_photo)
     db.commit()
     db.refresh(db_photo)
-    return db_photo
+    return db_photo

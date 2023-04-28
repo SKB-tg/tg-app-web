@@ -2,6 +2,8 @@ from fastapi import APIRouter, Request, Response, FastAPI, Depends
 from fastapi.responses import Response
 #from auth.api import router as auth
 import json
+import datetime
+import pytz
 
 import logging
 
@@ -16,19 +18,20 @@ from sqlalchemy.orm import Session
 from app.database import schemas
 from app.db import SessionLocal, engine
 from app.database import crud
-#from app.handlers.handler import bot
+from app.settings import settings
 
 
 from aiogram import Bot, Dispatcher
 from aiohttp.web_request import BaseRequest
-from app.u_utils import Methods
+from app.u_utils import parse_webapp_init_data1
+
 
 # from aiohttp.web_response import json_response
 from aiogram.utils.web_app import check_webapp_signature, safe_parse_webapp_init_data, parse_webapp_init_data
 
 router = APIRouter()
-TELEGRAM_TOKEN1="1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"
-bot = Bot(token=TELEGRAM_TOKEN1, parse_mode="HTML")
+#TELEGRAM_TOKEN1="1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"
+bot = Bot(token=settings.TELEGRAM_TOKEN, parse_mode="HTML")
 
 class DataBot(BaseModel):
     data: Dict
@@ -107,25 +110,31 @@ async def send_data_json_for_db_handler(request1: Dict, db: Session = Depends(ge
 
     return {"ok": True}
 ##################################################################################
-@router.post("/checkData/")
-async def check_data_handler(request: Dict):
-    data = request["data"]
-    try:
-        web_app_init_data = safe_parse_webapp_init_data(token=bot.token, init_data=data["_auth"])
-    except ValueError:
-        return {"ok": False, "err": "Error data"}
-    print(web_app_init_data)
 
-    
+@router.post("/checkData/")
+async def check_data_handler(request: Dict, db: Session = Depends(get_db)):
+    data = request["data"]
+
     if check_webapp_signature(bot.token, data["_auth"]):
+        b=str(parse_webapp_init_data(data['_auth']).user)
+        _usertg=parse_webapp_init_data1(b)
+        print(118, b)
+        tz = pytz.timezone("Europe/Moscow")
+        now = datetime.datetime.now(tz)
+        _usertg.created=now.value
+
+        d_usertg=crud.get_TgUser_by_email(db=db, first_name=_usertg.first_name)
+        if d_usertg == None:
+            crud.create_TgUser(db=db, user=_usertg)
+            print(f'этого {_usertg.first_name} нет ', _usertg)
+        else:
+           print('такой уже есть', f"id-{d_usertg.id}")
         return {"ok": True}
     return {"ok": False, "err": "Unauthorized"}
-
-
+##########################################################
 @router.post("/sendMessage/")
 async def send_message_handler(request: Dict):
     data = request["data"]
-    print(data)
     try:
         web_app_init_data = safe_parse_webapp_init_data(token=bot.token, init_data=data["_auth"])
     except ValueError:
@@ -134,7 +143,7 @@ async def send_message_handler(request: Dict):
     w_a_i_d0 = data['msg'].split('&')
     waid_d=[(str(i).split(':')[0], str(i).split(':')[1]) for i in w_a_i_d0]
     w_a_i_d=dict(waid_d)
-    print('ppp', w_a_i_d)#['Категория'])
+    print('ppp', w_a_i_d)
     #d= w_a_i_d.get('Аттрибут') if w_a_i_d.get('Аттрибут') else '--' 
     reply_markup = None
     await bot.send_message(chat_id=web_app_init_data.user.id,
@@ -168,7 +177,7 @@ async def send_message_handler(request: Dict):
     
     return {"ok": True}
 
-async def check_data_handler(request: Request):
+async def check_data_handler2(request: Request):
     bot: Bot = request.app["bot"]
 
     data = await request.post()

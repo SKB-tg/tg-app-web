@@ -1,9 +1,12 @@
 from fastapi import APIRouter, Request, Response
 from starlette.types import Message, Receive, Scope, Send
 import typing
-
+import json
+from typing import Any, Callable, Optional, List
+from urllib.parse import parse_qs, parse_qsl
 from multidict import CIMultiDict, CIMultiDictProxy, MultiDict, MultiDictProxy
 from aiohttp import hdrs
+from app.database.schemas import TgUserCreate
 
 
 async def empty_receive() -> typing.NoReturn:
@@ -12,6 +15,61 @@ async def empty_receive() -> typing.NoReturn:
 
 async def empty_send(message: Message) -> typing.NoReturn:
     raise RuntimeError("Send channel has not been made available")
+
+#*************************************************************************
+
+def parse_webapp_init_data1( init_data: str, *, loads: Callable[..., Any] = json.loads,) -> TgUserCreate:
+
+    result = {}
+    for item in init_data.split():
+        key, value = item.split('=')
+        result[key.strip()] = value.strip().replace("'", "")
+    result_out = {'id_chat': int(result.pop('id'))}
+    for key, value in result.items(): 
+        if value.lower() == 'none': result_out[key] = None 
+        elif value.lower() == 'false': result_out[key] = False 
+        elif value.lower() == 'true': result_out[key] = True 
+        elif value.isdigit(): result_out[key] = int(value) 
+        else:
+            result_out[key] = value 
+    return TgUserCreate(**result_out)
+
+ # ``` Ключевые улучшения: - Мы используем метод `.split()` для преобразования строки в список, а не `.rsplit()`
+ #  - Мы используем цикл `for item in init_data.split()` вместо цикла "for x in range(len(data))". Это более питонячий способ. 
+ #  - Мы убрали условие `if key == 'id'` и использовали его значение для `id_chat` 
+ #  - Мы использовали метод `.lower()` для сравнения строк вместо повторения кода 
+ #  - Мы использовали метод `.isdigit()` для проверки, является ли значение числом 
+ #  - Мы убрали лишнюю проверку `value.find("'")`, потому что она всегда будет истинной, если значение содержит какой-то текст.
+ #   Вместо этого мы просто проверяем, является ли значение числом (`isdigit()`)
+
+# def parse_webapp_init_data1(
+#     init_data: str,
+#     *,
+#     loads: Callable[..., Any] = json.loads,) -> TgUserCreate:
+    
+#     data=init_data.rsplit(" ")
+#     result={ data[x].split('=')[0].strip() : data[x].split('=')[1].strip()  for x in range(len(data))}
+#     result_out={}
+#     for key, value in result.items():
+#         if key == 'id':
+#             result_out['id_chat']=int(value)
+#         else:
+#             if value == 'None' or value == 'False' or value == 'True' :
+#                 if value == 'None' or value == 'none' :
+#                     result_out[key]=None
+#                 if value == 'False':
+#                     result_out[key]=bool(False)
+#                 if value == 'True':
+#                     result_out[key]=bool(True)
+#             elif value.find("'"):
+#                 result_out[key]=int(value)
+#             else:
+#                 result_out[key]=value.replace("'", "")
+#     print(99, result_out)
+
+#     return TgUserCreate(**result_out)
+
+#************************************************************************************
 
 class Methods(Request):
     """docstring for Methods"""
@@ -239,4 +297,4 @@ class Methods(Request):
 
 # if __name__ == "__main__":
 #     import uvicorn
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
+#     uvicorn.run(app, host="0.0.0.0", port=8000)

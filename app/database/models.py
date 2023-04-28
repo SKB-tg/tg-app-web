@@ -13,10 +13,12 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 class TgUser(Base):
-    __tablename__ = "tguser"
+    __tablename__ = "usertg"
 
-    codename = Column(String, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True)
+    username = Column(String)
     id_chat = Column(Integer, unique=True)
+    password = Column(String)
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
     last_name = Column(String)
@@ -24,7 +26,7 @@ class TgUser(Base):
     first_name = Column(String)
     photo_url = Column(String)
     is_bot = Column(Boolean)
-
+    language_code = Column(String)
 
 
     # items = relationship("Item", back_populates="owner")
@@ -54,12 +56,13 @@ class ProductPhoto(Base):
 	id_product = Column(Integer, ForeignKey("product.id"))
 
 	item_prod = relationship("Product", back_populates="product_photo")
+                                
 
 
-# def add_tg_user(new_user: dict) -> TgUser:
-# 	if tg_user_is_db == True:
-# 		return
-# 	inserted_row_id=db.insert("tguser", {
+
+
+
+#	inserted_row_id=db.insert("tguser", {
 # 	"codename": new_user['username'],
 # 	"id_chat": new_user['id'],
 # 	"created": _get_now_formatted(),

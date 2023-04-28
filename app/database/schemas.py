@@ -1,6 +1,12 @@
 from typing import List, Union
 
+import json
+from typing import Any, Callable, Optional
+from urllib.parse import parse_qs, parse_qsl
+
+from aiogram.utils.web_app import WebAppUser
 from pydantic import BaseModel
+import datetime
 
 
 class ProductBase(BaseModel):
@@ -43,17 +49,29 @@ class ProductPhoto(ProductBase):
         orm_mode = True
 
 class TgUserBase(BaseModel):
-    first_name: str
+    #id: int 
+    id_chat: int = 0
+    is_bot: bool = None
+    first_name: str = ""
+    last_name: str = ""
+    username: str = ""
+    language_code: str = 'ru'
+    photo_url: bool = None
+    is_active: bool = False
+    password: str = ""
+    created: datetime.datetime = None
 
 
 class TgUserCreate(TgUserBase):
-    password: str
+    pass
+
 
 
 class TgUser(TgUserBase):
-    codename: str
-    is_active: bool
+    id: int
+    username: str
     first_name: str
 
     class Config:
         orm_mode = True
+
