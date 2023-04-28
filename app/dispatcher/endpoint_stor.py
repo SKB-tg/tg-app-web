@@ -101,6 +101,13 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     users = crud.get_TgUsers(db, skip=skip, limit=limit)
     return users
 
+@router.get("/users/{name}", response_model=schemas.TgUserBase)
+def read_user(name: str, db: Session = Depends(get_db)):
+    db_user = crud.get_TgUser_by_email(db, first_name=name)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="user not found")
+    return db_user
+
 # @app.post("/users/{user_id}/items/", response_model=schemas.Item)
 # def create_item_for_user(
 #     user_id: int, item: schemas.ItemCreate, db: Session = Depends(get_db)
