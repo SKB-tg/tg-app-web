@@ -59,7 +59,7 @@ class TgUserBase(BaseModel):
     photo_url: bool = None
     is_active: bool = False
     password: str = ""
-    created: datetime.datetime = None
+    created: datetime = None
 
 
 class TgUserCreate(TgUserBase):
@@ -71,6 +71,14 @@ class TgUser(TgUserBase):
     id: int
     username: str
     first_name: str
+    id_chat: int 
+    is_bot: bool 
+    last_name: str 
+    language_code: str
+    photo_url: bool
+    is_active: bool
+    password: str
+    created: datetime
 
     class Config:
         orm_mode = True
