@@ -121,7 +121,7 @@ async def check_data_handler(request: Dict, db: Session = Depends(get_db)):
         print(118, b)
         tz = pytz.timezone("Europe/Moscow")
         now = datetime.datetime.now(tz)
-        _usertg.created=now.value
+        _usertg.created=now
 
         d_usertg=crud.get_TgUser_by_email(db=db, first_name=_usertg.first_name)
         if d_usertg == None:
