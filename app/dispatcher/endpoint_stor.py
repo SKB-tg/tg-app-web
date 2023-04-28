@@ -101,7 +101,7 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     users = crud.get_TgUsers(db, skip=skip, limit=limit)
     return users
 
-@router.get("/users/{name}", response_model=schemas.TgUserBase)
+@router.get("/user/{name}", response_model=schemas.TgUserBase)
 def read_user(name: str, db: Session = Depends(get_db)):
     db_user = crud.get_TgUser_by_email(db, first_name=name)
     if db_user is None:

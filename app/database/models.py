@@ -20,12 +20,12 @@ class TgUser(Base):
     id_chat = Column(Integer, unique=True)
     password = Column(String)
     hashed_password = Column(String)
-    is_active = Column(Boolean, default=True)
+    is_active = Column(Boolean, default=False)
     last_name = Column(String)
     created = Column(DateTime)
     first_name = Column(String)
-    photo_url = Column(String)
-    is_bot = Column(Boolean)
+    photo_url = Column(Boolean, default=None)
+    is_bot = Column(Boolean, default=None)
     language_code = Column(String)
 
 
