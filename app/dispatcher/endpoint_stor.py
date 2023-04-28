@@ -1,4 +1,5 @@
 """Endpoints module."""
+from typing import Dict, List
 
 from fastapi import APIRouter, Depends, Response, status, Request, HTTPException, FastAPI
 from sqlalchemy.orm import Session
@@ -88,12 +89,6 @@ def create_Product(product: schemas.ProductCreate, db: Session = Depends(get_db)
     return crud.create_Product(db=db, product=product)
 
 
-# @router.get("/users/", response_model=List[schemas.User])
-# def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-#     users = crud.get_users(db, skip=skip, limit=limit)
-#     return users
-
-
 @router.get("/product/{name}", response_model=schemas.Product)
 def read_product(name: str, db: Session = Depends(get_db)):
     db_product = crud.get_Product(db, name=name)
@@ -101,6 +96,10 @@ def read_product(name: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="product not found")
     return db_product
 
+@router.get("/users/", response_model=List[schemas.TgUser])
+def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    users = crud.get_TgUsers(db, skip=skip, limit=limit)
+    return users
 
 # @app.post("/users/{user_id}/items/", response_model=schemas.Item)
 # def create_item_for_user(
