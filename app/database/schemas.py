@@ -59,7 +59,7 @@ class TgUserBase(BaseModel):
     photo_url: bool = None
     is_active: bool = False
     password: str = ""
-    created: datetime = None
+    created: datetime.datetime = None
 
 
 class TgUserCreate(TgUserBase):
@@ -78,7 +78,7 @@ class TgUser(TgUserBase):
     photo_url: bool
     is_active: bool
     password: str
-    created: datetime
+    created: datetime.datetime
 
     class Config:
         orm_mode = True
