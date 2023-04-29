@@ -75,7 +75,7 @@ class TgUser(TgUserBase):
     is_bot: bool 
     last_name: str 
     language_code: str
-    photo_url: str
+    photo_url: bool
     is_active: bool
     password: str
     created: datetime.datetime
