@@ -108,6 +108,13 @@ def read_user(name: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="user not found")
     return db_user
 
+@router.post("/create-user/", response_model=schemas.TgUserCreate)
+def _create_TgUser(user: schemas.TgUserCreate, db: Session = Depends(get_db)):
+    db_user = crud.get_TgUser_by_email(db, first_name=user.first_name)
+    print(db_user)
+    if db_user:
+        raise HTTPException(status_code=400, detail="Такой товар существует")
+    return crud.create_TgUser(db=db, user=user)
 # @app.post("/users/{user_id}/items/", response_model=schemas.Item)
 # def create_item_for_user(
 #     user_id: int, item: schemas.ItemCreate, db: Session = Depends(get_db)
