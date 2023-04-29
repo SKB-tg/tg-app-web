@@ -17,7 +17,11 @@ def get_TgUsers(db: Session, skip: int = 0, limit: int = 100):
 
 def create_TgUser(db: Session, user: schemas.TgUserCreate):
     fake_hashed_password = user.password + "notreallyhashed"
-    db_user = models.TgUser(**user.dict(), hashed_password=fake_hashed_password)
+    if not type(product) == dict:
+        db_user = models.TgUser(**user.dict(), hashed_password=fake_hashed_password)
+    else:
+        db_user = models.TgUser(**user, hashed_password=fake_hashed_password)
+    #db_user = models.TgUser(**user.dict(), hashed_password=fake_hashed_password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -46,4 +50,5 @@ def create_product_photo(db: Session, product_photo: schemas.ProductPhotoCreate,
     db.add(db_photo)
     db.commit()
     db.refresh(db_photo)
-    return db_photo
+    return db_photo
+

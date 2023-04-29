@@ -16,17 +16,17 @@ class TgUser(Base):
     __tablename__ = "usertg"
 
     id = Column(Integer, primary_key=True)
-    username = Column(String)
-    id_chat = Column(Integer, unique=True)
-    password = Column(String)
-    hashed_password = Column(String)
-    is_active = Column(Boolean, default=False)
-    last_name = Column(String)
-    created = Column(DateTime)
-    first_name = Column(String)
-    photo_url = Column(String, default=None)
-    is_bot = Column(Boolean, default=None)
-    language_code = Column(String)
+    username = Column(String, nullable=False)
+    id_chat = Column(Integer, nullable=False, unique=True)
+    password = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    is_active = Column(Boolean, nullable=False, default=False)
+    last_name = Column(String, nullable=False)
+    created = Column(DateTime, nullable=False)
+    first_name = Column(String, nullable=False)
+    photo_url = Column(Boolean, nullable=False)
+    is_bot = Column(Boolean, nullable=False)
+    language_code = Column(String, nullable=False)
 
 
     # items = relationship("Item", back_populates="owner")
