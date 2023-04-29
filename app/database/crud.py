@@ -17,7 +17,7 @@ def get_TgUsers(db: Session, skip: int = 0, limit: int = 100):
 
 def create_TgUser(db: Session, user: schemas.TgUserCreate):
     fake_hashed_password = user.password + "notreallyhashed"
-    if not type(product) == dict:
+    if not type(user) == dict:
         db_user = models.TgUser(**user.dict(), hashed_password=fake_hashed_password)
     else:
         db_user = models.TgUser(**user, hashed_password=fake_hashed_password)
