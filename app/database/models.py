@@ -15,7 +15,7 @@ Base = declarative_base()
 class TgUser(Base):
     __tablename__ = "usertg"
 
-    id = Column(Integerue, primary_key=True)
+    id = Column(Integer, primary_key=True)
     username = Column(String)
     id_chat = Column(Integer, unique=True)
     password = Column(String)
