@@ -56,7 +56,7 @@ class TgUserBase(BaseModel):
     last_name: str = ""
     username: str = ""
     language_code: str = 'ru'
-    photo_url: bool = None
+    photo_url: str = ""
     is_active: bool = False
     password: str = ""
     created: datetime.datetime = None
@@ -75,7 +75,7 @@ class TgUser(TgUserBase):
     is_bot: bool 
     last_name: str 
     language_code: str
-    photo_url: bool
+    photo_url: str
     is_active: bool
     password: str
     created: datetime.datetime

@@ -89,7 +89,7 @@ def create_Product(product: schemas.ProductCreate, db: Session = Depends(get_db)
     return crud.create_Product(db=db, product=product)
 
 
-@router.get("/product/{name}", response_model=schemas.Product)
+@router.get("/product/{name}/", response_model=schemas.Product)
 def read_product(name: str, db: Session = Depends(get_db)):
     db_product = crud.get_Product(db, name=name)
     if db_product is None:
@@ -101,7 +101,7 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     users = crud.get_TgUsers(db, skip=skip, limit=limit)
     return users
 
-@router.get("/user/{name}", response_model=schemas.TgUserBase)
+@router.get("/user/{name}/", response_model=schemas.TgUser)
 def read_user(name: str, db: Session = Depends(get_db)):
     db_user = crud.get_TgUser_by_email(db, first_name=name)
     if db_user is None:

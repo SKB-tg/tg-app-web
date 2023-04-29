@@ -24,7 +24,7 @@ class TgUser(Base):
     last_name = Column(String)
     created = Column(DateTime)
     first_name = Column(String)
-    photo_url = Column(Boolean, default=None)
+    photo_url = Column(String, default=None)
     is_bot = Column(Boolean, default=None)
     language_code = Column(String)
 
