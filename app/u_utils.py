@@ -26,7 +26,7 @@ def parse_webapp_init_data1( init_data: str, *, loads: Callable[..., Any] = json
         result[key.strip()] = value.strip().replace("'", "")
     result_out = {'id_chat': int(result.pop('id'))}
     for key, value in result.items(): 
-        if value.lower() == NULL: result_out[key] = None 
+        if value.lower() == 'none': result_out[key] = None 
         elif value.lower() == 'false': result_out[key] = False 
         elif value.lower() == 'true': result_out[key] = True 
         elif value.isdigit(): result_out[key] = int(value) 
