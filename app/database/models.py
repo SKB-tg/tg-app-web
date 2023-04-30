@@ -17,15 +17,15 @@ class TgUser(Base):
 
     id = Column(Integer, primary_key=True)
     username = Column(String)
-    id_chat = Column(Integer, unique=True)
+    id_chat = Column(Integer)
     password = Column(String)
     hashed_password = Column(String)
-    is_active = Column(Boolean, default=False)
+    is_active = Column(Boolean, unique=False)
     last_name = Column(String)
     created = Column(DateTime)
     first_name = Column(String)
     photo_url = Column(Boolean)
-    is_bot = Column(Boolean)
+    is_bot = Column(Boolean, default=None)
     language_code = Column(String)
 
 

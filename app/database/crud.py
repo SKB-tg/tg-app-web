@@ -21,11 +21,11 @@ def create_TgUser(db: Session, user: schemas.TgUserCreate):
         db_user = models.TgUser(**user.dict(), hashed_password=fake_hashed_password)
     else:
         db_user = models.TgUser(**user, hashed_password=fake_hashed_password)
-    #db_user = models.TgUser(**user.dict(), hashed_password=fake_hashed_password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
+
 
 def get_Product(db: Session, name: str):
     return db.query(models.Product).filter(models.Product.name == name).first()

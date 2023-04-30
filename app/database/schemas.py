@@ -51,12 +51,12 @@ class ProductPhoto(ProductBase):
 class TgUserBase(BaseModel):
     #id: int 
     id_chat: int = 0
-    is_bot: bool = None
+    is_bot: Union[None, bool] = None
     first_name: str = ""
     last_name: str = ""
     username: str = ""
     language_code: str = 'ru'
-    photo_url: bool = None
+    photo_url: Union[None, bool] = None 
     is_active: bool = False
     password: str = ""
     created: datetime.datetime = None
@@ -64,7 +64,10 @@ class TgUserBase(BaseModel):
 
 class TgUserCreate(TgUserBase):
     pass
-
+    class Config:
+        orm_mode = True
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
 
 
 class TgUser(TgUserBase):
@@ -72,14 +75,15 @@ class TgUser(TgUserBase):
     username: str
     first_name: str
     id_chat: int 
-    is_bot: bool 
+    is_bot: Union[None, str] = None 
     last_name: str 
     language_code: str
-    photo_url: bool
+    #photo_url: bool
     is_active: bool
     password: str
     created: datetime.datetime
 
     class Config:
         orm_mode = True
-
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
