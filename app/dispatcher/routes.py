@@ -30,7 +30,7 @@ from app.u_utils import parse_webapp_init_data1
 from aiogram.utils.web_app import check_webapp_signature, safe_parse_webapp_init_data, parse_webapp_init_data
 
 router = APIRouter()
-#TELEGRAM_TOKEN1="1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"
+#TELEGRAM_TOKEN1=""
 bot = Bot(token=settings.TELEGRAM_TOKEN, parse_mode="HTML")
 
 class DataBot(BaseModel):
@@ -125,8 +125,12 @@ async def check_data_handler(request: Dict, db: Session = Depends(get_db)):
 
         d_usertg=crud.get_TgUser_by_email(db=db, first_name=_usertg.first_name)
         if d_usertg == None:
-            crud.create_TgUser(db=db, user=_usertg)
             print(f'этого {_usertg.first_name} нет ', _usertg)
+            try:
+                crud.create_TgUser(db=db, user=_usertg)
+            except Exception as e:
+                raise e
+                return {"ok": False, "err": "save base error"}
         else:
            print('такой уже есть', f"id-{d_usertg.id}")
         return {"ok": True}

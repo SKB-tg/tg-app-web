@@ -14,7 +14,7 @@ from pathlib import Path
 
 
 STATIC_PATH = str(Path('main.py').parent.resolve()) + '/public'
-#TELEGRAM_TOKEN = "1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU"#getenv("1699887557:AAGvYsHg0IjLplNPmWiBRwbWfQrXVIRzZmU")
+#TELEGRAM_TOKEN = ""#getenv("")
 #APP_BASE_URL = "https://7bf2-46-56-191-9.ngrok-free.app" #getenv("URL")
 WEBHOOK_PATH=f"/bot/{settings.TELEGRAM_TOKEN}"
 
