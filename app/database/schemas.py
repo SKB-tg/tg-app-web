@@ -75,7 +75,7 @@ class TgUser(TgUserBase):
     username: str
     first_name: str
     id_chat: int 
-    is_bot: Union[None, str] = None 
+    is_bot: Union[None, bool] = None 
     last_name: str 
     language_code: str
     #photo_url: bool
